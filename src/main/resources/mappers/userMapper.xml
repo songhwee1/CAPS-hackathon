@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.UserMapper">
+	<!-- <select id="login" resultType="int">
+		select id, pw
+		from user
+		where id =
+		#{userId} and pw = #{userPw};
+	</select> -->
+
+	<select id="loginInqr" parameterType="com.inhatc.system.user.vo.UserVO"
+		resultType="com.inhatc.system.user.vo.UserVO">
+		select id, pw, manager_belong, manager_name
+		from user
+		where id = #{id} and pw = #{pw};
+	</select>
+	
+	<select id="UserList" resultType="com.inhatc.system.user.vo.UserVO">
+		select
+		manager_belong, manager_name, id, pw
+		from user
+		order by manager_belong;
+	</select>
+	
+	<select id="find_id" resultType="com.inhatc.system.user.vo.UserVO">
+		select
+			pw, manager_name, manager_belong
+		from
+			user
+		where id = #{id};
+	</select>
+	
+	<insert id="join">
+		insert into user(manager_belong, manager_name, id, pw)
+		values(#{manager_belong}, #{manager_name}, #{id}, #{pw});
+	</insert>
+	
+	<update id="userUpdate">
+		update user set 
+		pw = #{pw},
+		manager_name = #{manager_name}, manager_belong = #{manager_belong}
+		where id = #{id};
+	</update>
+	
+	<delete id="userDelete">
+		delete from user
+		where id = #{id};
+	</delete>
+</mapper>

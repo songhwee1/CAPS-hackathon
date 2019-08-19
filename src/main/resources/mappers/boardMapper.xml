@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.BoardMapper">
+
+	<insert id="create">
+		insert into board (manager_classification,manager_belong, client_number, client_belong,
+		client_local, client_name, instrument, content, progress, completeId, completeDate, writer, regdate)
+		values(#{manager_classification},#{manager_belong}, #{client_number}, #{client_belong}, #{client_local}, #{client_name},
+		#{instrument}, #{content},'처리대기', 'NULL', 0, #{writer}, SYSDATE());
+	</insert>
+	
+	<update id="updateIng">
+		update board set
+		progress = '처리중',
+		completeId = #{completeId}
+		where bno = #{bno};
+	</update>
+	
+	<update id="updateEnd">
+		update board set
+		progress = '처리완료',
+		completeId = #{completeId},
+		completeDate = SYSDATE()
+		where bno = #{bno};
+	</update>
+	
+	
+	<select id="read" resultType="com.inhatc.system.board.vo.BoardVO">
+		select bno, manager_classification,manager_belong,client_number,
+		client_belong, client_local, client_name, instrument, content, writer, progress, completeId
+		from board
+		where bno = #{bno};
+	</select>
+	
+	<update id="update">
+		update board set 
+		manager_belong = #{manager_belong}, manager_classification = #{manager_classification}, 
+		client_number = #{client_number}, client_name = #{client_name},
+		client_belong = #{client_belong}, client_local = #{client_local}, 
+		instrument = #{instrument}, content = #{content}
+		where bno = #{bno};
+	</update>
+
+	<delete id="delete">
+		delete from board
+		where bno = #{bno};
+	</delete>
+
+	<sql id="searchCondition">
+		<!-- 검색 조건이 null이 아니라면 검색조건에 따른 데이터 조회-->
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and manager_classification like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and instrument like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and client_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'all'.toString()">
+				and progress like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listAll" resultType="com.inhatc.system.board.vo.BoardVO">
+		select
+		bno, manager_classification, manager_belong, instrument, client_name, client_local, regdate, progress, writer
+		from board
+		where bno>0
+		<include refid="searchCondition"></include>
+		order by bno
+		desc,
+		regdate desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="countPaging" resultType="int">
+		select
+		count(bno)
+		from
+		board
+		where bno>0
+		<include refid="searchCondition"></include>
+	</select>
+
+	<select id="find_number" resultType="com.inhatc.system.board.vo.BoardVO">
+		select
+		client_belong, client_local, client_name
+		from
+		information
+		where client_number = #{client_number};
+	</select>
+
+
+	<select id="BoardList" resultType="com.inhatc.system.board.vo.BoardVO">
+		select
+		client_number, client_name, client_belong, client_local
+		from information
+		order by client_belong desc;
+	</select>
+	
+	<update id="managerUpdate">
+		update information set 
+		client_name = #{client_name},
+		client_belong = #{client_belong}, client_local = #{client_local}
+		where client_number = #{client_number};
+	</update>
+	
+	<insert id="managerInsert">
+		insert into information (client_number, client_belong, client_local, client_name)
+		values(#{client_number}, #{client_belong}, #{client_local}, #{client_name});
+	</insert>
+	
+	<delete id="managerDelete">
+		delete from information
+		where client_number = #{client_number};
+	</delete>
+	
+	<select id="informationList" resultType="com.inhatc.system.board.vo.BoardVO">
+		select
+		client_number, client_belong, client_name, client_local
+		from information
+		order by client_belong;
+	</select>
+	
+	<select id="listAll_p" resultType="com.inhatc.system.board.vo.BoardVO">
+		select
+		bno, manager_classification, instrument, client_name, regdate, content
+		from board
+		where bno>0
+	</select>
+</mapper>

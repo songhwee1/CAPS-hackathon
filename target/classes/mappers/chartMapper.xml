@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.ChartMapper">
+
+	<select id="getChartData" parameterType="com.inhatc.system.chart.vo.ChartVO"
+		resultType="com.inhatc.system.chart.vo.ChartVO">
+		select
+		SUBSTRING(completedate,6,2) as year,
+		sum(case when manager_classification = '행정연구실' then 1 else 0 end) as
+		research_classification,
+		sum(case when manager_classification = '실습실' then 1 else 0 end) as
+		practice_classification,
+		sum(case when manager_classification = '일반강의실' then 1 else 0 end) as
+		normal_classification,
+		count(manager_classification) as sum_classification
+		from board
+		where progress = "처리완료"
+		and SUBSTRING(completedate,1,4) = #{year}
+		group by SUBSTRING(completedate,6,2); <!-- 2018-06-02 6번째 자리에서 2개  -->
+
+	</select>
+	
+	<select id="getinstrumentListData" parameterType="com.inhatc.system.chart.vo.ChartVO" resultType="Integer">
+	select count(instrument)
+	from board
+	where instrument = #{instrument} 
+	and progress = "처리완료"
+	and SUBSTRING(completedate,1,4) = #{year}
+	group by SUBSTRING(completedate,6,2);
+	</select>
+	
+	<select id="getinstrumentListDataName" resultType="String">
+	select distinct instrument
+	from board;
+	</select>
+	
+</mapper>
