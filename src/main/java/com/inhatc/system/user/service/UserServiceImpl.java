@@ -40,8 +40,13 @@ public class UserServiceImpl implements UserService {
 	public int login(UserVO uservo) throws Exception {
 		
 		int resultCode = 0;
-
-		resultCode = userDAO.login(uservo);
+		
+		 for(int i=0; i<10; i++) {    //반복된 인증시도 제한 기능
+			 
+			 resultCode = userDAO.login(uservo);
+		
+		 }
+		
 		
 		return resultCode;
 	}
