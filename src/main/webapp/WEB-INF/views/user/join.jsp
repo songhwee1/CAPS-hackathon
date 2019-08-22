@@ -12,37 +12,7 @@
 <script src="https://code.jquery.com/jquery.js">
 </script>
 
-<%-- <script>
-function ok(index){
-	if(index == 1){
-		 	if ( (<%=session.getAttribute("LOGIN_BELONG")%>) != ("관리자") ) {
-				alert("권한이 없습니다.");
-		 	} else {
-		 		document.form.action='/userInsert';
-		 		document.form.submit();
-		 	}
-		 	
-	}else if(index == 2){
-	 	if ( (<%=session.getAttribute("LOGIN_BELONG")%>) != ("관리자") ) {
-			alert("권한이 없습니다.");
-	 	} else {
-	 		document.form.action='/userModify';
-	 		document.form.submit();
-	 	}
-	 	
-	}else if(index == 2){
-	 	if ( (<%=session.getAttribute("LOGIN_BELONG")%>) != ("관리자") ) {
-			alert("권한이 없습니다.");
-	 	} else {
-	 		document.form.action='/userDelete';
-	 		document.form.submit();
-	 	}	
 
-}
-	 
-
-}
-</script> --%>
  
 
 
@@ -57,7 +27,8 @@ function ok(index){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인이 필요합니다.')");
-		script.println("location.href = '/'");
+		script.println("window.opener.location.reload()");
+		script.println("window.close()");
 		script.println("</script>");
 
 	} 
@@ -66,10 +37,10 @@ function ok(index){
 
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
+		script.println("history.back();");
 		script.println("alert('권한이 없습니다.')");
-		script.println("location.href = '/'");
 		script.println("</script>");
-	} 
+	}  
  %> 
  
 <div class="pop_wrap" id="popUpLayerId">
@@ -87,11 +58,9 @@ function ok(index){
 				
 				<tr>
 					<th>아이디</th>
-					<td  colspan="3"><input type="text" placeholder="아이디" name="id" id="id" class="form-control" /><button type="button" id="idBtn" class="button">조회</button></td>
-				<tr>
-					<th>비밀번호</th>
-					<td  colspan="3"><input type="password" id="pw" name="pw" placeholder="비밀번호" class="form-control" ></td>
-				</tr>
+					<td  colspan="3"><input type="text" placeholder="아이디" name="id" id="id" class="form-control" />
+					<!-- <button type="button" id="idBtn" class="button">조회</button></td> -->
+				
 				
 				
 				<tr>
@@ -105,8 +74,7 @@ function ok(index){
 						<c:set var="data" value="${UserVO.manager_belong}" />
 						<option value="" selected>선택해주세요.</option>
 					    <option value="IT기자재지원실" <c:if test="${data eq 'IT기자재지원실'}">selected</c:if>>IT기자재지원실</option>
-					    <option value="PC지원실1" <c:if test="${data eq 'PC지원실1'}">selected</c:if>>PC지원실1</option>
-					    <option value="PC지원실2" <c:if test="${data eq 'PC지원실2'}">selected</c:if>>PC지원실2</option>
+					    <option value="PC지원실" <c:if test="${data eq 'PC지원실'}">selected</c:if>>PC지원실</option>
 					    <option value="관리자" <c:if test="${data eq '관리자'}">selected</c:if>>관리자</option>
 						<option value="내비게이션" <c:if test="${data eq '내비게이션'}">selected</c:if>>내비게이션</option>
 					</select></td>
@@ -114,12 +82,12 @@ function ok(index){
 					</tr>
 				</tbody>
 			</table>
-				<span class="button bt01"><button type="button" id="submitBtn1" class="button" onClick="javascript: form.action='/userInsert';" >등록하기</button></span>
-				
-				<span class="button bt01"><button type="submit" id="submitBtn2" class="button" onClick="javascript: form.action='/userModify';">수정하기</button></span>
+				<span class="button bt01"><button type="submit" id="submitBtn1" class="button" onClick="javascript: form.action='/userInsert';" >등록하기</button></span>
+				<c:if test="${sessionScope.LOGIN_BELONG eq '관리자'}">
+				<!-- <span class="button bt01"><button type="submit" id="submitBtn2" class="button" onClick="javascript: form.action='/userModify';">수정하기</button></span> -->
 					
 				<span class="button bt01"><button type="submit" class="button" id="submitBtn3" onclick="javascript: form.action='/userDelete';">삭제하기</button></span>
-			
+			</c:if>
 			</form>
 		
 		<div class="button_rtbox">
@@ -144,10 +112,7 @@ $(document).ready(function(){
 												return false;
 											}
 											var pData = {};
-											/* jQuery("form#saveForm :input[type!='button']").each(function(e) {
-											pData[$(this).prop('name')] = $(this).val().toString();
-											}); */
-											//alert($("#number").val().toString());
+
 											pData['id'] = $("#id").val().toString();
 
 											$.ajax({
@@ -160,12 +125,11 @@ $(document).ready(function(){
 																$('#pw').val(response.pw);
 																$('#manager_name').val(response.manager_name);
 																$('#manager_belong').val(response.manager_belong);
+																
 														},
 
 														error : function(request,status, error) {
-															alert("code = "+ request.status + " message = " + request.responseText 
-																	+ " error = "
-																	+ error);
+															alert("조회 중 오류가 발생하였습니다!");
 														}
 													})
 

@@ -4,29 +4,6 @@ import java.util.List;
 import com.inhatc.system.board.vo.BoardVO;
 import com.inhatc.system.board.vo.Criteria;
 
-/**************************************************************************************
-*
-* @Class Name  : BoardDao.java
-* @Description : 게시판을 관리하는 DAO
-*                  
-* @Modification Information  
-* <p>
-* <b>NOTE</b>: 
-* @author 전세연
-* @since  2018.09.18
-* @version 1.0
-* @see <pre>
-*  == 개정이력(Modification Information) ==
-*   
-*   수정일                   수정자              수정내용
-*  ------------    --------    ---------------------------
-*   2018.09.18      전세연              최초 생성 
-*   2019.01.10 		전세연		Console 정보 수정
-*   2019.01.22		전세연		게시판 수정, 삭제 
-*   2019.01.29		전세연		교내 내선번호 추가, 수정, 삭제
-*   2019.01.31		전세연		주석 표시
-* 
-* </pre> **************************************************************************************/
 
 public interface BoardDAO {
 	

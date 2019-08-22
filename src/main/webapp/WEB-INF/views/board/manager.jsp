@@ -18,7 +18,8 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인이 필요합니다.')");
-		script.println("location.href = '/'");
+		script.println("window.opener.location.reload()");
+		script.println("window.close()");
 		script.println("</script>");
 
 	} 
@@ -27,8 +28,8 @@
 
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
+		script.println("history.back();");
 		script.println("alert('권한이 없습니다.')");
-		script.println("location.href = '/'");
 		script.println("</script>");
 	} 
  %> 
@@ -104,10 +105,6 @@
 											}
 
 											var pData = {};
-											/* jQuery("form#saveForm :input[type!='button']").each(function(e) {
-											pData[$(this).prop('name')] = $(this).val().toString();
-											}); */
-											//alert($("#number").val().toString());
 											pData['client_number'] = $("#client_number").val().toString();
 
 											$.ajax({

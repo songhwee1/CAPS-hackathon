@@ -43,18 +43,6 @@ $(function(){
 	//searchType select 박스 설정
 	setSearchTypeSelect();
 	
-	/* //등록, 삭제 후 문구 처리
-	var result = '${result}';
-	$(function(){
-		if(result === 'registerOK'){
-			$('#registerOK').removeClass('hidden');
-			$('#registerOK').fadeOut(2000);
-		}
-		if(result === 'removeOK'){
-			$('#removeOK').removeClass('hidden');
-			$('#removeOK').fadeOut(2000);
-		}
-	}) */
 	
 	//prev 버튼 활성화, 비활성화 처리
 	var canPrev = '${pageMaker.prev}';
@@ -133,17 +121,7 @@ text-align: center;
 
 						<div class="panel-body">
 						<table class="table table-striped table-bordered table-hover">
-							<colgroup>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-									<col width="10%"/>
-							</colgroup>
+							
 							<thead>
 								
 								<tr>
@@ -151,10 +129,8 @@ text-align: center;
 										<th>작업분류</th>
 										<th>담당소속</th>
 										<th>기계명</th>
-										<th>의뢰인</th>
 										<th>위치</th>
 										<th>의뢰받은시간</th>
-										<th>작성자</th>
 										<th>현황</th>
 								</tr>
 							</thead>
@@ -177,11 +153,9 @@ text-align: center;
 														<c:if test="${boardList[rowIndex.index].instrument == '7'}">앰프</c:if>
 														<c:if test="${boardList[rowIndex.index].instrument == '8'}">소프트웨어 설치</c:if>						
 														<c:if test="${boardList[rowIndex.index].instrument == '9'}">기타</c:if>
-														</td>
-													<td>${boardList[rowIndex.index].client_name}</td>	
+														</td>	
 													<td>${boardList[rowIndex.index].client_local}</td>
 													<td>${boardList[rowIndex.index].regdate}</td>
-													<td>${boardList[rowIndex.index].writer}</td>
 													<td><a href="#" onclick="fncView('${boardList[rowIndex.index].bno}');" ><c:if test="${boardList[rowIndex.index].progress == '처리완료'}"><font color="blue" >
 처리완료</font></c:if><c:if test="${boardList[rowIndex.index].progress == '처리중'}"><font color="green">처리중</font></c:if><c:if test="${boardList[rowIndex.index].progress == '처리대기'}"><font color="red">처리대기</font></c:if></a></td>
 								
@@ -234,26 +208,7 @@ text-align: center;
 <div class="page-content">
 						<div class="text-center">
 							<nav aria-label="pagination">
-							<%-- <ul class="pagination">
-
-							<c:if test="${pageMaker.prev}">
-								<li><a href="?page=${pageMaker.startPage -1}">&laquo;</a></li>
-							</c:if>
-
-							<c:forEach begin="${pageMaker.startPage }"
-								end="${pageMaker.endPage}" var="idx">
-
-								<li
-									<c:out value="${pageMaker.cri.page == idx?'class =active':'' }"/>>
-									<a href="?page=${idx}">${idx}</a>
-								</li>
-							</c:forEach>
-
-							<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-								<li><a href="?page=${pageMaker.endPage +1}">&raquo;</a></li>
-							</c:if>
-
-						</ul> --%>
+							
 								<ul class="pagination">
 									<li id="page-prev">
 										<a href="${pageMaker.makeQuery(pageMaker.startPage-1)}" aria-label="Prev">

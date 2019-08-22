@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +25,9 @@ public class UserController {
 	@Autowired
 	UserService service;
 
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
+	
 	/*go to the login*/
 	@RequestMapping(value = "/loginHome", method = RequestMethod.GET)
 	public String loginHome(UserVO uservo) throws Exception {
@@ -41,13 +45,13 @@ public class UserController {
 
 		logger.info("(UserControllor) 로그인한 사람의 아이디는 " + uservo.getId());
 		logger.info("(UserControllor) 로그인한 사람의 비밀번호는 " + uservo.getPw());
-		
+
 		UserVO loginModel = service.loginInqr(uservo, ses);
 		
-		logger.info("(UserControllor) 로그인한 사람의 이름은 " + loginModel.getManager_name());
+			logger.info("(UserControllor) 로그인한 사람의 이름은 " + loginModel.getManager_name());
 
-		resultCode = loginModel.getLoginType();
-
+			resultCode = loginModel.getLoginType();
+		
 		return resultCode;
 	}
 
@@ -90,11 +94,16 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/user/list", method = RequestMethod.POST)
 	public UserVO userList(String id, Model model) throws Exception {
-		
+	
+			
 		logger.info("(UserControllor) user테이블에서 아이디를 가져옴." + id);
+
 		UserVO result = service.find_id(id);
+
 		
-		return result;
+
+	     return result;
+		
 	}
 	
 	/* insert the member */
@@ -107,6 +116,7 @@ public class UserController {
 		System.out.println("(UserControllor) 아이디는 : " + uservo.getId()); // 의뢰인 이름
 		System.out.println("(UserControllor) 비밀번호는 : " + uservo.getPw()); // 작업 분류
 	
+		
 		service.join(uservo, ses);
 		
 		response.setContentType("text/html; charset=UTF-8");

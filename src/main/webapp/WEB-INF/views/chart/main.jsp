@@ -13,17 +13,6 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-<!--  <table>
- 	<tr>
- 		<div id="logo" class="col-xs-12	col-sm-10">
-				<a href="/">INHATCSYSTEM</a>
-		</div>
- 	</tr>
-	<tr>
-		<td> <select name="YEAR" id="YEAR" title="년도" class="select w80" onchange="javascript:viewChart(this)"></select> 
-		</td>
-	</tr>
-</table> -->
 	<div style="margin-top:70px;">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	 <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
