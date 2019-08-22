@@ -222,7 +222,7 @@ public class BoardController {
 		return result;
 	}
 	
-	/*manage to information of school phone number*/ 
+	/*manage to information  of school phone number*/ 
 	@RequestMapping(value = "/managerAction", method = RequestMethod.GET)
 	public String managerGET(BoardVO board, HttpSession ses, Model model) throws Exception {
 
