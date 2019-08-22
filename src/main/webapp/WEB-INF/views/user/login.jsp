@@ -9,9 +9,9 @@
 <link rel="stylesheet" href="../css/user/login.css">
 
 	<form method="post" class="signUp" id="signupForm" name="signupForm">
-		<h1 class="signUpTitle">인하공업전문대학 - 로그인</h1>
+		<h1 class="signUpTitle">로그인</h1>
 		
-		<input type="text" id="id" name="id" class="signUpInput" placeholder="학번을 입력해주세요." autofocus required> 
+		<input type="text" id="id" name="id" class="signUpInput" placeholder="아이디를 입력해주세요." autofocus required> 
 		<input type="password" id="pw" name="pw" class="signUpInput" placeholder="비밀번호를 입력해주세요." onkeypress="if(event.keyCode == 13){ fncLogin(); return;}" required> 
 		<input type="button" value="로그인!" class="signUpButton" onclick="fncLogin()">
 		

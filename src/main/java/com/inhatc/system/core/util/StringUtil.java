@@ -288,7 +288,13 @@ public class StringUtil extends StringUtils {
       String substr = substringMatch(param, start, start + range);
       substr = substringMatch(substr, 0, format.length());
       if (substr.length() < format.length()) {
-         String tmp = format.substring(0, format.length() - substr.length()) + substr;
+        /* String tmp = format.substring(0, format.length() - substr.length()) + substr;*/
+    	  String tmp ="";
+    	  if(substr != null) {
+    	  tmp = format.substring(0, format.length() - substr.length()) + substr;
+    	  }
+    	  else { // error process
+    	  }
          substr = tmp;
       }
 

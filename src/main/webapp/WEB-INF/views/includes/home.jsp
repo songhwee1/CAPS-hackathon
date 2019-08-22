@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 
 
-<title>IT지원실</title>
+<title>기자재고장처리 A/S확인</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -79,6 +79,3 @@
 <!-- All functions for this theme + document.ready processing -->
 <!-- <script src="../../js/common/devoops.js"></script> -->
 
-<!-- <script type="text/javascript">
-	alert("페이지 공사중입니다. 1월말에 보아요~");</script>
-</html> -->

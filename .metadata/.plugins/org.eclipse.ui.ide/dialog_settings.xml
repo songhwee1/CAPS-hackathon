@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\dev\equipment_system_workspaces"/>
 		<item value="C:\dev\equipment_system"/>
 		<item value="C:\dev\2019-0~1"/>
 		<item value="C:\dev\System"/>

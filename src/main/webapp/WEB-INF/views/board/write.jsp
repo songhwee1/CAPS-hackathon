@@ -16,17 +16,17 @@
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
+		script.println("alert('로그인이 필요합니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
 
 	}
 
-	if (!(session.getAttribute("LOGIN_BELONG").equals("IT기자재지원실") || session.getAttribute("LOGIN_BELONG").equals("PC지원실1") || session.getAttribute("LOGIN_BELONG").equals("PC지원실2") || session.getAttribute("LOGIN_BELONG").equals("내비게이션") || session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
+	if (!(session.getAttribute("LOGIN_BELONG").equals("내비게이션") || session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
 
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('글쓸 권한이 없습니다.')");
+		script.println("alert('권한이 없습니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
 	}
@@ -50,8 +50,8 @@
 				<tr>
 					<th>담당소속</th>
 					<td><select name="manager_belong">
-							<option value="IT지원실" selected="selected">IT지원실</option>
-							<option value="PC지원실1">PC지원실1</option>
+							<option value="IT기자재지원실" selected="selected">IT기자재지원실</option>
+							<option value="PC지원실">PC지원실</option>
 					</select></td>
 					<th>작업분류</th>
 					<td><select name="manager_classification">
@@ -63,18 +63,18 @@
 
 				<tr>
 					<th>내선번호</th>
-					<td><input type="text" placeholder="전화번호" name="client_number" id="client_number" class="form-control" >
+					<td><input type="text" placeholder="내선번호를 입력하세요." name="client_number" id="client_number" class="form-control" >
 						<button type="button" id="numberBtn" class="button">조회</button></td>
-					<th>이름</th>
-					<td><input type="text" placeholder="이름" name="client_name"	id="client_name" class="form-control"></td>
+					<th>의뢰자</th>
+					<td><input type="text" placeholder="의뢰인 이름을 입력하세요." name="client_name"	id="client_name" class="form-control"></td>
 					
 				</tr>
 				
 				<tr>
 					<th>소속</th>
-					<td><input type="text" placeholder="소속" name="client_belong" id="client_belong" class="form-control"/></td>
+					<td><input type="text" placeholder="소속을 입력하세요." name="client_belong" id="client_belong" class="form-control"/></td>
 					<th>위치</th>
-					<td><input type="text" placeholder="위치" name="client_local" id="client_local" class="form-control"></td>
+					<td><input type="text" placeholder="위치를 입력하세요." name="client_local" id="client_local" class="form-control"></td>
 				</tr>
 
 				<tr>
@@ -91,13 +91,13 @@
 				</tr>
 
 				<tr>
-					<th>내용</th>
-					<td colspan="3"><textarea name="content" class="form-control" type="text">요구사항: <%="\n"%>-----------------------------------------------------<%="\n"%>처리자: <%="\n"%>처리사항: </textarea></td>
+					<th>의뢰내용</th>
+					<td colspan="3"><textarea name="content" class="form-control" type="text">요구사항: <%="\n"%> <%="\n"%>처리사항: </textarea></td>
 				</tr>
 				</tbody>
 			</table>
 			<div class="button_rtbox">
-				<span class="button bt01"><button type="submit" id="submitBtn", class="bt01">등록</button></span>
+				<span class="button bt01"><button type="submit" id="submitBtn" class="bt01">등록</button></span>
 				<span class="button bt02"><button class="bt01"
 						onclick="window.close()">닫기</button></span>
 			</div>
@@ -116,16 +116,16 @@
 <script>
 	$(document).ready(function() {
 						$("#numberBtn").click(function() {
-							/* if ($("#client_number").val() == "") {
+							 if ($("#client_number").val() == "") {
 												alert("전화번호를 입력해주세요.");
 												$("#client_number").focus();
 												return false;
-											} */
+											} 
 
 											var pData = {};
-											/* jQuery("form#saveForm :input[type!='button']").each(function(e) {
+											 jQuery("form#saveForm :input[type!='button']").each(function(e) {
 											pData[$(this).prop('name')] = $(this).val().toString();
-											}); */
+											});
 											//alert($("#number").val().toString());
 											pData['client_number'] = $("#client_number").val().toString();
 

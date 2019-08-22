@@ -13,24 +13,25 @@
 	if (session.getAttribute("LOGIN_ID") != null) {
 		userID = (String) session.getAttribute("LOGIN_ID");
 	}
+	
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
+		script.println("alert('로그인이 필요합니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
 
-	}
+	} 
 
-	if (!(session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
+	 if (!(session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
 
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
-	}
-%>
+	} 
+ %> 
 
 <div class="pop_wrap" id="popUpLayerId">
 	<div class="pop_tit">

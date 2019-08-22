@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="/WEB-INF/views/includes/home.jsp" flush="true" />
+<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
+
+<link rel="stylesheet" href="/css/board/content.css">
 <script src="/js/main/util.js" type="text/javascript"></script>
 
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -10,8 +13,6 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-
-<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 <!--  <table>
  	<tr>
  		<div id="logo" class="col-xs-12	col-sm-10">

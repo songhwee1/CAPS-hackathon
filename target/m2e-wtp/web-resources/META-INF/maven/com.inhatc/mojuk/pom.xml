@@ -249,15 +249,7 @@
                <webxml>src/main/webapp/WEB-INF/web.xml</webxml>
             </configuration>
          </plugin>
-         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.2.1</version>
-            <configuration>
-            <url>http://15.164.146.218/home/ubuntu</url>
-            <path>/System</path>
-        </configuration>
-         </plugin>
+         
       </plugins>
    </build>
 </project>

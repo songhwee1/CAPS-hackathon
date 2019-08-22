@@ -23,6 +23,35 @@ import com.inhatc.system.board.vo.PageMaker;
 
 @Controller
 public class BoardController {
+	
+	 public String toFilterString(String in){
+		  if(in == null || in.length() < 1){
+		   return in;
+		  }
+		  StringBuffer out = new StringBuffer();
+		  
+		  for(int i = 0; in != null && i < in.length(); i++){
+		   char c = in.charAt(i);
+		   if(c == '\''){
+		    out.append(" ");
+		   } else if(c == '\"'){
+		    out.append(" ");
+		   } else if(c == '<'){
+		    out.append(" ");
+		   } else if(c == '>'){
+		    out.append(" ");
+		   } else if(c == '&'){
+		    out.append(" ");
+		   } else if(c == '('){
+		    out.append(" ");
+		   } else if(c == ')'){
+		    out.append(" ");
+		   } else {
+		    out.append(c);
+		   }
+		  }
+		  return out.toString();
+		 }
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -92,7 +121,7 @@ public class BoardController {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<script>alert('등록이 완료되었습니다.'); window.opener.location.reload(); window.close(); </script>");
+		out.println("<script>alert('등록이 완료되었습니다.'); window.opener.location.reload(); window.close();</script>");
 		out.flush();
 	}
 
@@ -107,8 +136,13 @@ public class BoardController {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-
-		out.println("<script>alert('처리가 신청되었습니다.'); window.opener.location.reload(); window.close();</script>");
+		out.println("<script>if(confirm('처리 하시겠습니까?') == true){"
+				+ "alert('처리가 신청되었습니다.'); "
+				+ "window.opener.location.reload(); "
+				+ "window.close();"
+				+ "} else{ "
+				+ "return false; "
+				+ "}</script>");
 		out.flush();
 
 	}

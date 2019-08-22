@@ -6,6 +6,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<jsp:include page="/WEB-INF/views/includes/home.jsp" flush="true" />
+<jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
+
+<link rel="stylesheet" href="/css/board/content.css">
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -71,12 +75,12 @@ var goPrints = function(title){
 <body>
 
 	<form>
-		<span class="button bt02"><input type="button" value="출력하기" onclick="goPrints(title);" /></span>
+		<span style="margin-top:50px;" class="button bt02"><input type="button" value="출력하기" onclick="goPrints(title);" /></span>
 	</form>
 
 <div id="printarea">
 <!-- 프린트 하기위한 영역 -->
-<table width="*" cellspacing="1" border="0" class="type04">
+<table width="*" cellspacing="1" border="0" class="type04" >
 							<colgroup>
 									<col width="10%"/>
 									<col width="10%"/>

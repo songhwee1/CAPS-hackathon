@@ -18,7 +18,7 @@ String userID = null;
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
+		script.println("alert('로그인이 필요합니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
 	}

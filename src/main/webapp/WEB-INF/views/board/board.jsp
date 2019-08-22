@@ -1,26 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.util.*" %>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script src="/js/main/util.js" type="text/javascript"></script>
-<script type="text/javascript" src="/Exp_admin/js/print.js"></script>
-
-<link rel="stylesheet" href="/css/board/content.css">
 
 <jsp:include page="/WEB-INF/views/includes/home.jsp" flush="true" />
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 
+<link rel="stylesheet" href="/css/board/content.css">
+
+<script src="/js/main/util.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Exp_admin/js/print.js"></script>
 
 <script>
 function fncWrite() {
 	 if('<%=session.getAttribute("LOGIN_ID")%>' == "null") {
-			alert("로그인후 이용해주세요.");
+			alert("로그인이 필요합니다.");
 			location.href='/';
 			return false;
 		} else {
-			gfnOpenPop('/board/write', '등록', '736', '500');
+			gfnOpenPop('/board/write', '글 등록', '736', '500');
 			return false;
 		}
 	
@@ -28,12 +27,12 @@ function fncWrite() {
 }
 function fncView(idx) {
 	 if('<%=session.getAttribute("LOGIN_ID")%>' == "null") {
-			alert("로그인후 이용해주세요.");
+			alert("로그인이 필요합니다.");
 			location.href = '/';
 			return false;
 		
 	 }else {
-			gfnOpenPop('/board/read?bno=' + idx, '상세보기', '736', '500');
+			gfnOpenPop('/board/read?bno=' + idx, '글 상세보기', '736', '500');
 			return false;
 		}
 
@@ -116,7 +115,6 @@ function setSearchTypeSelect(){
 	})
 }
 
-
 </script>
 
 <style>
@@ -124,8 +122,6 @@ table{
 margin: auto;
 text-align: center;
 }
-
-
 </style>
 						
 		<!-- <div class="row" style="margin-top:70px;">
@@ -135,7 +131,7 @@ text-align: center;
 					<div class="row" style="margin-top:30px;">
 						<div class="col-lg-12">
 						<div class="panel panel-default">
-					
+						
 
 						<div class="panel-body">
 						<table class="table table-striped table-bordered table-hover">
@@ -172,7 +168,7 @@ text-align: center;
 								<!-- Start: list_row -->
 								<tr>
 									<td>${boardList[rowIndex.index].bno}</td>
-													<td>${boardList[rowIndex.index].manager_classification}</a></td>
+													<td>${boardList[rowIndex.index].manager_classification}</td>
 													<td>${boardList[rowIndex.index].manager_belong}</td>
 													<td ><c:if test="${boardList[rowIndex.index].instrument == '1'}">모니터</c:if>
 														<c:if test="${boardList[rowIndex.index].instrument == '2'}">프린터</c:if>
@@ -210,18 +206,14 @@ text-align: center;
 			</div>
 		</div>
 	<!--End Content-->
-		<form action="/board/print" method="post">
-			<span class="button bt02" style="float: right;"><button type="submit" class="button" >인쇄하기</button></span>
-		</form>
+		
 	
-
-
-	<%-- <c:if test="${sessionScope.LOGIN_BELONG eq '내비게이션'}"> --%>
-						<c:if test="${sessionScope.LOGIN_BELONG eq '내비게이션' || sessionScope.LOGIN_BELONG eq 'IT기자재지원실' || sessionScope.LOGIN_BELONG eq '관리자' || sessionScope.LOGIN_BELONG eq 'PC지원실1' || sessionScope.LOGIN_BELONG eq 'PC지원실2' }">
-						<button type="button" class="btn btn-primary" onclick="fncWrite()" style="float: right;">
-							<strong>등록</strong>
-						</button>
-						</c:if> 
+				<c:if test="${sessionScope.LOGIN_BELONG eq '내비게이션' || sessionScope.LOGIN_BELONG eq '관리자'}">
+				<button type="button" class="btn btn-primary" onclick="fncWrite()" style="float: right;">
+					<strong>등록</strong>
+				</button>
+				</c:if> 
+				
 				<div class="form-inline">
 						<select id="searchTypeSel" name="searchType">
 							<option value="">검색조건</option>
@@ -234,10 +226,8 @@ text-align: center;
 						<input class="form-control" type="text" id="keyword" name="keyword" 
 							value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요"/>
 						<button id="searchBtn" class="btn btn-primary">검색</button>
-						
-						
-			
-					</div>
+				
+				</div>
 					
 					
 				
@@ -293,6 +283,4 @@ text-align: center;
 			
 </div>
 
-
-<%@include file="../includes/footer.jsp"%>
 

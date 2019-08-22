@@ -8,41 +8,76 @@
 <link rel="stylesheet" href="/css/board/common.css">
 <link rel="stylesheet" href="/css/board/default.css">
 <link rel="stylesheet" href="/css/board/content.css">
-<script src="http://code.jquery.com/jquery.js"></script>
 
- <%
+<script src="http://code.jquery.com/jquery.js">
+</script>
+
+<%-- <script>
+function ok(index){
+	if(index == 1){
+		 	if ( (<%=session.getAttribute("LOGIN_BELONG")%>) != ("관리자") ) {
+				alert("권한이 없습니다.");
+		 	} else {
+		 		document.form.action='/userInsert';
+		 		document.form.submit();
+		 	}
+		 	
+	}else if(index == 2){
+	 	if ( (<%=session.getAttribute("LOGIN_BELONG")%>) != ("관리자") ) {
+			alert("권한이 없습니다.");
+	 	} else {
+	 		document.form.action='/userModify';
+	 		document.form.submit();
+	 	}
+	 	
+	}else if(index == 2){
+	 	if ( (<%=session.getAttribute("LOGIN_BELONG")%>) != ("관리자") ) {
+			alert("권한이 없습니다.");
+	 	} else {
+	 		document.form.action='/userDelete';
+	 		document.form.submit();
+	 	}	
+
+}
+	 
+
+}
+</script> --%>
+ 
+
+
+<%
 	String userID = null;
 	System.out.println(session.getAttribute("LOGIN_BELONG"));
 	if (session.getAttribute("LOGIN_ID") != null) {
 		userID = (String) session.getAttribute("LOGIN_ID");
 	}
+	
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
+		script.println("alert('로그인이 필요합니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
 
-	}
+	} 
 
-	if (!(session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
+	 if (!(session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
 
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다.')");
 		script.println("location.href = '/'");
 		script.println("</script>");
-	}
-%> 
-
-
-
+	} 
+ %> 
+ 
 <div class="pop_wrap" id="popUpLayerId">
 	<div class="pop_tit">
 		<span>회원 관리하기</span>
 	</div>
 	<div class="pop_content">
-		<form method="post"><input type="hidden" name="Id" value="${UserVO.id}">
+		<form method="post" name="form"><input type="hidden" name="Id" value="${UserVO.id}">
 			<table class="pop_table">
 				<tbody>
 				<colgroup>
@@ -79,9 +114,9 @@
 					</tr>
 				</tbody>
 			</table>
-				<span class="button bt01"><button type="submit" id="submitBtn1" class="button" onclick="javascript: form.action='/userInsert';" >추가하기</button></span>
+				<span class="button bt01"><button type="button" id="submitBtn1" class="button" onClick="javascript: form.action='/userInsert';" >등록하기</button></span>
 				
-				<span class="button bt01"><button type="submit" id="submitBtn2" class="button" onclick="javascript: form.action='/userModify';">수정하기</button></span>
+				<span class="button bt01"><button type="submit" id="submitBtn2" class="button" onClick="javascript: form.action='/userModify';">수정하기</button></span>
 					
 				<span class="button bt01"><button type="submit" class="button" id="submitBtn3" onclick="javascript: form.action='/userDelete';">삭제하기</button></span>
 			
@@ -96,7 +131,7 @@
 		
 	</div>
 </div>
-<script>
+ <script>
 
 $(document).ready(function(){
 
@@ -222,7 +257,7 @@ $(document).ready(function(){
 						
 
 
-</script>
+</script> 
 
 
 
