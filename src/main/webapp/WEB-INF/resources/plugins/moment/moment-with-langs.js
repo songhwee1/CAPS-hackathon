@@ -1,4 +1,4 @@
-//! moment.js
+/*//! moment.js
 //! version : 2.5.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
@@ -6,9 +6,9 @@
 
 (function (undefined) {
 
-    /************************************
+    *//************************************
         Constants
-    ************************************/
+    ************************************//*
 
     var moment,
         VERSION = "2.5.1",
@@ -318,9 +318,9 @@
     formatTokenFunctions.DDDD = padToken(formatTokenFunctions.DDD, 3);
 
 
-    /************************************
+    *//************************************
         Constructors
-    ************************************/
+    ************************************//*
 
     function Language() {
 
@@ -364,9 +364,9 @@
         this._bubble();
     }
 
-    /************************************
+    *//************************************
         Helpers
-    ************************************/
+    ************************************//*
 
 
     function extend(a, b) {
@@ -618,9 +618,9 @@
             moment(input).local();
     }
 
-    /************************************
+    *//************************************
         Languages
-    ************************************/
+    ************************************//*
 
 
     extend(Language.prototype, {
@@ -876,9 +876,9 @@
         return moment.fn._lang;
     }
 
-    /************************************
+    *//************************************
         Formatting
-    ************************************/
+    ************************************//*
 
 
     function removeFormattingTokens(input) {
@@ -942,9 +942,9 @@
     }
 
 
-    /************************************
+    *//************************************
         Parsing
-    ************************************/
+    ************************************//*
 
 
     // get the regex to find the next token
@@ -968,13 +968,13 @@
             return strict ? parseTokenSixDigits : parseTokenOneToSixDigits;
         case 'S':
             if (strict) { return parseTokenOneDigit; }
-            /* falls through */
+             falls through 
         case 'SS':
             if (strict) { return parseTokenTwoDigits; }
-            /* falls through */
+             falls through 
         case 'SSS':
             if (strict) { return parseTokenThreeDigits; }
-            /* falls through */
+             falls through 
         case 'DDD':
             return parseTokenOneToThreeDigits;
         case 'MMM':
@@ -1131,7 +1131,7 @@
         case 'e':
         case 'E':
             token = token.substr(0, 1);
-            /* falls through */
+             falls through 
         case 'gg':
         case 'gggg':
         case 'GG':
@@ -1462,9 +1462,9 @@
         return input;
     }
 
-    /************************************
+    *//************************************
         Relative Time
-    ************************************/
+    ************************************//*
 
 
     // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
@@ -1495,9 +1495,9 @@
     }
 
 
-    /************************************
+    *//************************************
         Week of Year
-    ************************************/
+    ************************************//*
 
 
     // firstDayOfWeek       0 = sun, 6 = sat
@@ -1542,9 +1542,9 @@
         };
     }
 
-    /************************************
+    *//************************************
         Top Level Functions
-    ************************************/
+    ************************************//*
 
     function makeMoment(config) {
         var input = config._i,
@@ -1759,9 +1759,9 @@
         return moment(input).parseZone();
     };
 
-    /************************************
+    *//************************************
         Moment Prototype
-    ************************************/
+    ************************************//*
 
 
     extend(moment.fn = Moment.prototype, {
@@ -1974,24 +1974,24 @@
             switch (units) {
             case 'year':
                 this.month(0);
-                /* falls through */
+                 falls through 
             case 'month':
                 this.date(1);
-                /* falls through */
+                 falls through 
             case 'week':
             case 'isoWeek':
             case 'day':
                 this.hours(0);
-                /* falls through */
+                 falls through 
             case 'hour':
                 this.minutes(0);
-                /* falls through */
+                 falls through 
             case 'minute':
                 this.seconds(0);
-                /* falls through */
+                 falls through 
             case 'second':
                 this.milliseconds(0);
-                /* falls through */
+                 falls through 
             }
 
             // weeks are a special case
@@ -2184,9 +2184,9 @@
     // add aliased format methods
     moment.fn.toJSON = moment.fn.toISOString;
 
-    /************************************
+    *//************************************
         Duration Prototype
-    ************************************/
+    ************************************//*
 
 
     extend(moment.duration.fn = Duration.prototype, {
@@ -2332,9 +2332,9 @@
     };
 
 
-    /************************************
+    *//************************************
         Default Lang
-    ************************************/
+    ************************************//*
 
 
     // Set default language, other languages will inherit from English.
@@ -5091,13 +5091,13 @@
         return '[Leschten] dddd [um] LT';
     }
 
-    /**
+    *//**
      * Returns true if the word before the given week day loses the "-n" ending.
      * e.g. "Leschten Dënschdeg" but "Leschte Méindeg"
      *
      * @param weekday {integer}
      * @returns {boolean}
-     */
+     *//*
     function eifelerRegelAppliesToWeekday(weekday) {
         weekday = parseInt(weekday, 10);
         switch (weekday) {
@@ -5112,13 +5112,13 @@
         }
     }
 
-    /**
+    *//**
      * Returns true if the word before the given number loses the "-n" ending.
      * e.g. "an 10 Deeg" but "a 5 Deeg"
      *
      * @param number {integer}
      * @returns {boolean}
-     */
+     *//*
     function eifelerRegelAppliesToNumber(number) {
         number = parseInt(number, 10);
         if (isNaN(number)) {
@@ -6891,7 +6891,7 @@
 (function (factory) {
     factory(moment);
 }(function (moment) {
-    /*var symbolMap = {
+    var symbolMap = {
             '1': '௧',
             '2': '௨',
             '3': '௩',
@@ -6914,7 +6914,7 @@
             '௮': '8',
             '௯': '9',
             '௦': '0'
-        }; */
+        }; 
 
     return moment.lang('ta', {
         months : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split("_"),
@@ -6952,7 +6952,7 @@
             y : "ஒரு வருடம்",
             yy : "%d ஆண்டுகள்"
         },
-/*        preparse: function (string) {
+        preparse: function (string) {
             return string.replace(/[௧௨௩௪௫௬௭௮௯௦]/g, function (match) {
                 return numberMap[match];
             });
@@ -6961,7 +6961,7 @@
             return string.replace(/\d/g, function (match) {
                 return symbolMap[match];
             });
-        },*/
+        },
         ordinal : function (number) {
             return number + 'வது';
         },
@@ -7719,13 +7719,13 @@
     moment.lang('en');
 
 
-    /************************************
+    *//************************************
         Exposing Moment
-    ************************************/
+    ************************************//*
 
     function makeGlobal(deprecate) {
         var warned = false, local_moment = moment;
-        /*global ender:false */
+        global ender:false 
         if (typeof ender !== 'undefined') {
             return;
         }
@@ -7766,3 +7766,4 @@
         makeGlobal();
     }
 }).call(this);
+*/

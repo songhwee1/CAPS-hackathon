@@ -1,4 +1,4 @@
-package com.inhatc.system.core.util;
+/*package com.inhatc.system.core.util;
 import java.io.StringWriter;
 import java.security.MessageDigest;
 import java.text.DecimalFormat;
@@ -288,7 +288,7 @@ public class StringUtil extends StringUtils {
       String substr = substringMatch(param, start, start + range);
       substr = substringMatch(substr, 0, format.length());
       if (substr.length() < format.length()) {
-        /* String tmp = format.substring(0, format.length() - substr.length()) + substr;*/
+         String tmp = format.substring(0, format.length() - substr.length()) + substr;
     	  String tmp ="";
     	  if(substr != null) {
     	  tmp = format.substring(0, format.length() - substr.length()) + substr;
@@ -704,3 +704,4 @@ public static boolean isEquals(String a, String b) {
       return sw.toString();
    }
 }
+*/

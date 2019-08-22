@@ -1,4 +1,4 @@
-//Flot Line Chart
+/*//Flot Line Chart
 $(document).ready(function() {
 
     var offset = 0;
@@ -1240,3 +1240,4 @@ $(function() {
     $.plot($("#flot-bar-chart"), [barData], barOptions);
 
 });
+*/

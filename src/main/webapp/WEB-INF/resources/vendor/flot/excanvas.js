@@ -1,4 +1,4 @@
-// Copyright 2006 Google Inc.
+/*// Copyright 2006 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,11 +51,11 @@ if (!document.createElement('canvas').getContext) {
 
   var IE_VERSION = +navigator.userAgent.match(/MSIE ([\d.]+)?/)[1];
 
-  /**
+  *//**
    * This funtion is assigned to the <canvas> elements as element.getContext().
    * @this {HTMLElement}
    * @return {CanvasRenderingContext2D_}
-   */
+   *//*
   function getContext() {
     return this.context_ ||
         (this.context_ = new CanvasRenderingContext2D_(this));
@@ -63,7 +63,7 @@ if (!document.createElement('canvas').getContext) {
 
   var slice = Array.prototype.slice;
 
-  /**
+  *//**
    * Binds a function to an object. The returned function will always use the
    * passed in {@code obj} as {@code this}.
    *
@@ -78,7 +78,7 @@ if (!document.createElement('canvas').getContext) {
    * @param {*} var_args Rest arguments that will be used as the initial
    *     arguments when the function is called
    * @return {Function} A new function that has bound this
-   */
+   *//*
   function bind(f, obj, var_args) {
     var a = slice.call(arguments, 2);
     return function() {
@@ -130,14 +130,14 @@ if (!document.createElement('canvas').getContext) {
       }
     },
 
-    /**
+    *//**
      * Public initializes a canvas element so that it can be used as canvas
      * element from now on. This is called automatically before the page is
      * loaded but if you are creating elements using createElement you need to
      * make sure this is called on the element.
      * @param {HTMLElement} el The canvas element to initialize.
      * @return {HTMLElement} the element that was created.
-     */
+     *//*
     initElement: function(el) {
       if (!el.getContext) {
         el.getContext = getContext;
@@ -561,12 +561,12 @@ if (!document.createElement('canvas').getContext) {
     return lineCapMap[lineCap] || 'square';
   }
 
-  /**
+  *//**
    * This class implements CanvasRenderingContext2D interface as described by
    * the WHATWG.
    * @param {HTMLElement} canvasElement The element that the 2D context should
    * be associated with
-   */
+   *//*
   function CanvasRenderingContext2D_(canvasElement) {
     this.m_ = createMatrixIdentity();
 
@@ -1209,11 +1209,11 @@ if (!document.createElement('canvas').getContext) {
     setM(this, m, true);
   };
 
-  /**
+  *//**
    * The text drawing function.
    * The maxWidth argument isn't taken in account, since no browser supports
    * it yet.
-   */
+   *//*
   contextPrototype.drawText_ = function(text, x, y, maxWidth, stroke) {
     var m = this.m_,
         delta = 1000,
@@ -1327,7 +1327,7 @@ if (!document.createElement('canvas').getContext) {
     return {width: this.textMeasureEl_.offsetWidth};
   };
 
-  /******** STUBS ********/
+  *//******** STUBS ********//*
   contextPrototype.clip = function() {
     // TODO: Implement
   };
@@ -1426,3 +1426,4 @@ if (!document.createElement('canvas').getContext) {
 })();
 
 } // if
+*/
