@@ -7,10 +7,8 @@
 <jsp:include page="/WEB-INF/views/includes/home.jsp" flush="true" />
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 
-<link rel="stylesheet" href="/css/board/content.css">
 
 <script src="/js/main/util.js" type="text/javascript"></script>
-<script type="text/javascript" src="/Exp_admin/js/print.js"></script>
 
 <script>
 function fncWrite() {

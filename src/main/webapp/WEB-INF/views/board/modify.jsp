@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -121,3 +121,4 @@ String userID = null;
 	<span class="button bt02"><button class="bt01" onclick="window.close()">닫기</button></span>
 	</div>
 </div>
+ --%>

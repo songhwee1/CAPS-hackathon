@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/css/board/common.css">
 <link rel="stylesheet" href="/css/board/default.css">
 <link rel="stylesheet" href="/css/board/content.css">
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <%
 	String userID = null;
 	System.out.println(session.getAttribute("LOGIN_BELONG"));
