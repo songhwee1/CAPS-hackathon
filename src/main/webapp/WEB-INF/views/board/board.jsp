@@ -40,7 +40,7 @@ function fncView(idx) {
 	}
 	
 $(function(){
-	//perPageNum select 박스 설정
+	//perPageNum select 박스 설 정
 	setPerPageNumSelect();
 	//searchType select 박스 설정
 	setSearchTypeSelect();
