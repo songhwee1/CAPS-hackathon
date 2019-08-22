@@ -9,7 +9,12 @@ function fncJoin() {
 			location.href='/';
 			return false;
 			
-		} else {
+		} else if('<%=session.getAttribute("LOGIN_BELONG")%>' != "관리자") {
+			alert("권한이 없습니다.");
+			location.href='/board/error';
+			return false;
+						
+		}else {
 			gfnOpenPop('/joinAction', '등록', '800', '500');
 			return false; 
 		 } 
@@ -25,7 +30,7 @@ function fncManager() {
 			
 		} else if('<%=session.getAttribute("LOGIN_BELONG")%>' != "관리자") {
 			alert("권한이 없습니다.");
-			location.href='/';
+			location.href='/board/error';
 			return false;
 						
 		}else {
@@ -66,15 +71,19 @@ function fncPrint() {
 					<div class="col-xs-8 col-sm-4">
 					<form action="/board/print" method="post" name="form">
 						<a href="/chart"  class="dropdown-toggle" > <i class="fa fa-bar-chart-o" ></i> <span class="hidden-xs">Chart</span></a>
-						<i>&nbsp; | &nbsp;</i>
-						 <a href="#" type="submit" onclick="fncPrint();" class="dropdown-toggle" > <i class="fa fa-book" ></i><span class="hidden-xs">Print</span></a>
-					
+						
+						 
 						<c:if test="${sessionScope.LOGIN_BELONG eq '관리자'}">
-							<i>&nbsp; | &nbsp;</i>
-							<a href="#" onclick="fncJoin();" class="dropdown-toggle" > <i  class="fa fa-table" ></i> <span class="hidden-xs"> Join</span></a>
-							<i>&nbsp; | &nbsp;</i>
-							<a href="#" onclick="fncManager();" class="dropdown-toggle" > <i class="fa fa-desktop" ></i> <span class="hidden-xs"> Manager</span></a>
+							
+					<i>&nbsp; | &nbsp;</i>
+						<a href="#" onclick="fncManager();" class="dropdown-toggle" > <i class="fa fa-desktop" ></i> <span class="hidden-xs"> Manager</span></a>
+					<i>&nbsp; | &nbsp;</i>
+						<a href="#" type="submit" onclick="fncPrint();" class="dropdown-toggle" > <i class="fa fa-book" ></i><span class="hidden-xs">Print</span></a>
+					<i>&nbsp; | &nbsp;</i>
+						<a href="#" onclick="fncJoin();" class="dropdown-toggle" > <i  class="fa fa-table" ></i> <span class="hidden-xs"> Join</span></a>
+						
 						</c:if>
+						
 						
 						</form>
 					</div>

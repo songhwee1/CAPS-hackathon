@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,10 +21,11 @@ import com.inhatc.system.board.service.BoardService;
 import com.inhatc.system.board.vo.BoardVO;
 import com.inhatc.system.board.vo.Criteria;
 import com.inhatc.system.board.vo.PageMaker;
+import com.josephoconnell.html.HTMLInputFilter;
 
 @Controller
 public class BoardController {
-	
+
 	 public String toFilterString(String in){
 		  if(in == null || in.length() < 1){
 		   return in;
@@ -218,8 +220,11 @@ public class BoardController {
 
 		logger.info("(BoardControllor) information테이블에서 전화번호를 가져옴." + client_number);
 		BoardVO result = service.find_number(client_number);
-
-		return result;
+		{
+		  result = new HTMLInputFilter().filter(client_number);
+		 
+         return result;
+		}
 	}
 	
 	/*manage to information  of school phone number*/ 
@@ -323,5 +328,19 @@ public class BoardController {
 		
 		return "/board/print_page";
 	}
+	
+	@ExceptionHandler(RuntimeException.class)
 
+	public String exceptionHandler(Model model, Exception e){
+
+	logger.info("exception : " + e.getMessage());
+
+	model.addAttribute("exception", e);
+
+	return "board/error";
+
+	}
 }
+
+
+

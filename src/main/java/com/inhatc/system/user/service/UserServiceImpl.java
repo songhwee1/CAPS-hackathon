@@ -1,33 +1,14 @@
 package com.inhatc.system.user.service;
 
 import java.util.List;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.inhatc.system.user.dao.UserDAO;
 import com.inhatc.system.user.vo.UserVO;
-
-/**************************************************************************************
-*
-* @Class Name  : UserServiceImpl.java
-* @Description : 사용자를 관리하는 service
-* @Modification Information  
-* <p>
-* <b>NOTE</b>: 
-* @author 전세연
-* @since  2018.09.18
-* @version 1.0
-* @see <pre>
-*  == 개정이력(Modification Information) ==
-*   
-*   수정일                   수정자              수정내용
-*  ------------    --------    ---------------------------
-*   2018.09.18      전세연              최초 생성 
-*   2019.01.10 		전세연		Console 정보 수정
-*   2019.01.19		전세연		회원 추가, 수정, 삭제
-*   2019.01.31		전세연		주석 표시   
-* 
-* </pre> **************************************************************************************/
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,12 +16,18 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
+	
 	/*로그인*/
 	@Override
 	public int login(UserVO uservo) throws Exception {
 		
+	
 		int resultCode = 0;
 		
+	
+		  
 		 for(int i=0; i<10; i++) {    //반복된 인증시도 제한 기능
 			 
 			 resultCode = userDAO.login(uservo);
@@ -58,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
 		if (loginModel != null) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
+			
 			uservo.setLoginType("Y");
 			
 			ses.setAttribute("LOGIN_ID", loginModel.getId()); 
@@ -92,11 +80,17 @@ public class UserServiceImpl implements UserService {
 		return userDAO.find_id(id);
 	}
 	
+	   
 	/*회원 추가*/
+   @Override
 	public void join(UserVO uservo, HttpSession ses) throws Exception{
 		
 		System.out.println("(User_ServiceImpl) 회원 정보 추가");
 		
+		 String encPassword = passEncoder.encode(uservo.getPw());
+		 uservo.setPw(encPassword);
+		  
+		 
 		userDAO.join(uservo);
 	}
 	

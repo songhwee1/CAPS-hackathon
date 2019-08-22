@@ -70,7 +70,7 @@
 	
 	<select id="listAll" resultType="com.inhatc.system.board.vo.BoardVO">
 		select
-		bno, manager_classification, manager_belong, instrument, client_name, client_local, regdate, progress, writer
+		bno, manager_classification, manager_belong, instrument, client_local, regdate, progress
 		from board
 		where bno>0
 		<include refid="searchCondition"></include>
@@ -131,7 +131,7 @@
 	
 	<select id="listAll_p" resultType="com.inhatc.system.board.vo.BoardVO">
 		select
-		bno, manager_classification, instrument, client_name, regdate, content
+		bno, manager_classification, instrument, regdate, content
 		from board
 		where bno>0
 	</select>

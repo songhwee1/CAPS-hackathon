@@ -21,9 +21,7 @@
 
 
 <jsp:include page="/WEB-INF/views/includes/home.jsp" flush="true" />
-<!-- html,jsp선언문,jstl선언문이 담겨있는 home -->
-<%-- <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
- --%>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 

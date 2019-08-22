@@ -35,15 +35,6 @@ String userID = null;
 	
 	
 	
-	/* $("#submitBtn_d").click(function() {
-		
-		if (confirm('삭제 하시겠습니까?') == true){ 
-			window.location.href = 'form.action=/board/delete';
-			alert('삭제가 완료되었습니다.'); window.opener.location.reload(); window.close(); }
-		else{ return false; } ; 
-		
-	});*/
-	
 </script>
 
 <!--Start Content-->

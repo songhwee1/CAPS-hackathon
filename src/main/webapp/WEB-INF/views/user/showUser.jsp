@@ -20,8 +20,9 @@
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('로그인을 해주세요.')");
-		script.println("location.href = '/'");
+		script.println("alert('로그인을 필요합니다.')");
+		script.println("window.opener.location.reload()");
+		script.println("window.close()");
 		script.println("</script>");
 
 	}
@@ -31,7 +32,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다.')");
-		script.println("location.href = '/'");
+		script.println("history.back();");
 		script.println("</script>");
 	}
 %>
@@ -56,7 +57,6 @@
 								<th>소속</th>
 								<th>이름</th>
 								<th>ID</th>
-								<th>비밀번호</th>
 							</tr>
 						</thead>
 						<c:choose>
@@ -69,7 +69,6 @@
 											<td>${UserList[rowIndex.index].manager_belong}</td>
 											<td>${UserList[rowIndex.index].manager_name}</td>
 											<td>${UserList[rowIndex.index].id}</td>
-											<td>${UserList[rowIndex.index].pw}</td>
 										</tr>
 								</c:forEach>
 							</c:when>

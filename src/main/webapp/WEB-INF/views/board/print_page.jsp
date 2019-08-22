@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%@ page import="java.io.PrintWriter"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" import="java.util.*" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
@@ -10,7 +10,31 @@
 <jsp:include page="/WEB-INF/views/includes/header.jsp" flush="true" />
 
 <link rel="stylesheet" href="/css/board/content.css">
+<%
+	String userID = null;
+	System.out.println(session.getAttribute("LOGIN_BELONG"));
+	if (session.getAttribute("LOGIN_ID") != null) {
+		userID = (String) session.getAttribute("LOGIN_ID");
+	}
+	
+	if (userID == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인이 필요합니다.')");
+		script.println("location.href = '/'");
+		script.println("</script>");
 
+	} 
+
+	 if (!(session.getAttribute("LOGIN_BELONG").equals("관리자")) ) {
+
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('권한이 없습니다.')");
+		script.println("location.href = '/'");
+		script.println("</script>");
+	} 
+ %> 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -46,26 +70,7 @@ table.type04 td {
 
 var goPrints = function(title){
  window.print();
-	/* alert("ㅎㅎㅎ");
-    var sw=screen.width;
-    var sh=screen.height;
-    var w=800;//팝업창 가로길이
-    var h=600;//세로길이
-    var xpos=(sw-w)/2; 
-    var ypos=(sh-h)/2; 
 
-    var pHeader="<html><head><link rel='stylesheet' type='text/css' href='/Exp_admin/css/print.css'><title>" + title + "</title></head><body>";
-    var pgetContent=document.getElementById("printarea").innerHTML + "<br>";
-    //innerHTML을 이용하여 Div로 묶어준 부분을 가져옵니다.
-    var pFooter="</body></html>";
-    pContent=pHeader + pgetContent + pFooter; 
-     
-    pWin=window.open("","print","width=" + w +",height="+ h +",top=" + ypos + ",left="+ xpos +",status=yes,scrollbars=yes"); //동적인 새창을 띄웁니다.
-    pWin.document.open(); //팝업창 오픈
-    pWin.document.write(pContent); //새롭게 만든 html소스를 씁니다.
-    pWin.document.close(); //클로즈
-    pWin.print(); //윈도우 인쇄 창 띄우고
-    pWin.close(); //인쇄가 되던가 취소가 되면 팝업창을 닫습니다. */
    };
    </script>
 <!-- 프린트를 위해 따로 나눠준 자바스크립트 파일 -->
@@ -84,7 +89,6 @@ var goPrints = function(title){
 									<col width="10%"/>
 									<col width="15%"/>
 									<col width="15%"/>
-									<col width="15%"/>
 									<col width="*%"/>
 							</colgroup>
 							<thead>
@@ -93,7 +97,6 @@ var goPrints = function(title){
 										<th>접수번호</th>
 										<th>작업분류</th>
 										<th>기계명</th>
-										<th>의뢰인</th>
 										<th>의뢰받은시간</th>
 										<th>내용</th>
 								</tr>
@@ -117,7 +120,6 @@ var goPrints = function(title){
 										<c:if test="${boardList[rowIndex.index].instrument == '8'}">소프트웨어 설치</c:if>						
 										<c:if test="${boardList[rowIndex.index].instrument == '9'}">기타</c:if>
 										</td>
-									<td>${boardList[rowIndex.index].client_name}</td>	
 									
 									<td >${boardList[rowIndex.index].regdate} </td>
 									<td>${boardList[rowIndex.index].content}</td>

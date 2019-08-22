@@ -6,28 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.inhatc.system.user.vo.UserVO;
 
 
-/**************************************************************************************
- *
- * @Class Name  : UserService.java
- * @Description : 사용자를 관리하는 service
- * @Modification Information  
- * <p>
- * <b>NOTE</b>: 
- * @author 전세연
- * @since  2018.09.18
- * @version 1.0
- * @see <pre>
- *  == 개정이력(Modification Information) ==
- *   
- *   수정일                   수정자              수정내용
- *  ------------    --------    ---------------------------
- *   2018.09.18     전세연              최초 생성 
- *   2019.01.10 	전세연		Console 정보 수정
- *   2019.01.19		전세연		회원 추가, 수정, 삭제
- *   2019.01.31		전세연		주석 표시   
- * 
- * </pre> **************************************************************************************/
-
 
 @Transactional
 public interface UserService {
