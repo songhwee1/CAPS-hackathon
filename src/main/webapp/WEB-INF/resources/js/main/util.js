@@ -57,7 +57,9 @@ function gfnOpenPop(url, target, w, h, scroll, resizable)
     {
         nWin2.focus();
     }
-    catch (oEx) { }
+    catch (oEx) { 
+    	System.out.println(e.getMessage());
+    }
     return nWin2;
 }
 

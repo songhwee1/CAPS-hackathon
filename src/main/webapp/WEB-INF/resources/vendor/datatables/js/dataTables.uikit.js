@@ -1,9 +1,9 @@
 /*! DataTables UIkit 3 integration
- */
+ 
 
-/**
+*//**
  * This is a tech preview of UIKit integration with DataTables.
- */
+ *//*
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
@@ -37,7 +37,7 @@
 var DataTable = $.fn.dataTable;
 
 
-/* Set the defaults for DataTables initialisation */
+ Set the defaults for DataTables initialisation 
 $.extend( true, DataTable.defaults, {
 	dom:
 		"<'row uk-grid'<'uk-width-1-2'l><'uk-width-1-2'f>>" +
@@ -47,7 +47,7 @@ $.extend( true, DataTable.defaults, {
 } );
 
 
-/* Default class modification */
+ Default class modification 
 $.extend( DataTable.ext.classes, {
 	sWrapper:      "dataTables_wrapper uk-form dt-uikit",
 	sFilterInput:  "uk-form-small",
@@ -56,7 +56,7 @@ $.extend( DataTable.ext.classes, {
 } );
 
 
-/* UIkit paging button renderer */
+ UIkit paging button renderer 
 DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, buttons, page, pages ) {
 	var api     = new DataTable.Api( settings );
 	var classes = settings.oClasses;
@@ -173,4 +173,4 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 
 
 return DataTable;
-}));
+}));*/
