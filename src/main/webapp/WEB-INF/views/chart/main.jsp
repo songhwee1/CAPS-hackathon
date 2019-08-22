@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/board/content.css">
 <script src="/js/main/util.js" type="text/javascript"></script>
 
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
