@@ -679,12 +679,12 @@ public static boolean isEquals(String a, String b) {
       StringBuffer sb = new StringBuffer();
 
       try {
-         MessageDigest md5 = MessageDigest.getInstance("MD5");
-         md5.update(str.getBytes());
-         byte[] md5Bytes = md5.digest();
+         MessageDigest SHA-256 = MessageDigest.getInstance("SHA-256");
+         SHA-256.update(str.getBytes());
+         byte[] SHA-256Bytes = SHA-256.digest();
 
-         for (int i = 0; i < md5Bytes.length; ++i) {
-            sb.append(md5Bytes[i]);
+         for (int i = 0; i < SHA-256Bytes.length; ++i) {
+            sb.append(SHA-256Bytes[i]);
          }
       } catch (Exception arg4) {
          ;
